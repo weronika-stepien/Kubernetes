@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-pong
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "pong.local"  # Ensure this DNS name can be resolved locally
+      http:
+        paths:
+          - path: /vnc_lite.html
+            pathType: Prefix
+            backend:
+              service:
+                name: pong-same-range-svc
+                port:
+                  number: 5000
+
+
+
